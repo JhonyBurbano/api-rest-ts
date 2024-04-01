@@ -7,6 +7,9 @@ async function dbConnect(): Promise<void> {
     await mogoose.connect(DB_URI, {
       retryWrites: true,
       w: "majority",
+      authSource: "admin",
+      user: "jbmongo",
+      pass: "jbmongo",
     });
   } catch (error) {
     console.log("Mirar ", error);
