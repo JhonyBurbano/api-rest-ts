@@ -7,7 +7,10 @@ import {
   updateItem,
   removeItem,
 } from "../services/items.service";
-
+import { JwtPayload } from "jsonwebtoken";
+interface RequestExt extends Request {
+  user?: string | JwtPayload;
+}
 const get = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
@@ -18,10 +21,10 @@ const get = async (req: Request, res: Response) => {
     handleHttp(res, "ERROR_GET_ITEM");
   }
 };
-const getList = async (req: Request, res: Response) => {
+const getList = async (req: RequestExt, res: Response) => {
   try {
     const response = await getItems();
-    res.send(response);
+    res.send({ items: response, user: req.user });
   } catch (error) {
     handleHttp(res, "ERROR_GET_LIST_ITEM");
   }

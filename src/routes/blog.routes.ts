@@ -5,12 +5,13 @@ import {
   post,
   remove,
   update,
-} from "../controllers/items.controller";
+} from "../controllers/blog.controller";
+import { logMiddleware } from "../middleware/log.middleware";
 
 const router = Router();
 
 router.get("/", getList);
-router.get("/:id", get);
+router.get("/:id", logMiddleware, get);
 router.post("/", post);
 router.put("/:id", update);
 router.delete("/:id", remove);
