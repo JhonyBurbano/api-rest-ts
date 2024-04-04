@@ -15,8 +15,6 @@ const getList = (req: Request, res: Response) => {
 };
 const post = ({ body }: Request, res: Response) => {
   try {
-    // const body = req.body;
-    console.log("aaaa ", body);
     res.send(body);
   } catch (error) {
     handleHttp(res, "ERROR_POST_BLOG");

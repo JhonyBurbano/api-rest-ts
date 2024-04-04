@@ -7,10 +7,8 @@ import {
   updateItem,
   removeItem,
 } from "../services/items.service";
-import { JwtPayload } from "jsonwebtoken";
-interface RequestExt extends Request {
-  user?: string | JwtPayload;
-}
+import RequestExt from "../interfaces/req-ext.interface";
+
 const get = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;

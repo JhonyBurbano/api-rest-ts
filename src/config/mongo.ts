@@ -3,7 +3,6 @@ import mogoose from "mongoose";
 async function dbConnect(): Promise<void> {
   try {
     const DB_URI = <string>process.env.DB_URI;
-    console.log("--", DB_URI);
     await mogoose.connect(DB_URI, {
       retryWrites: true,
       w: "majority",
@@ -12,7 +11,7 @@ async function dbConnect(): Promise<void> {
       pass: "jbmongo",
     });
   } catch (error) {
-    console.log("Mirar ", error);
+    console.log("Error of Mongo ", error);
   }
 }
 
